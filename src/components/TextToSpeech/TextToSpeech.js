@@ -1,63 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
-const TextToSpeech = ({ text }) => {
-  const [voices, setVoices] = useState([]);
-  const [selectedVoice, setSelectedVoice] = useState(null);
+const SpeechToText = () => {
+  const { transcript, resetTranscript } = useSpeechRecognition();
 
-  useEffect(() => {
-    const fetchVoices = async () => {
-      try {
-        const availableVoices = await window.speechSynthesis.getVoices();
-        setVoices(availableVoices);
-        setSelectedVoice(findBengaliVoice(availableVoices));
-      } catch (error) {
-        console.error("Error fetching voices:", error);
-      }
-    };
-
-    const findBengaliVoice = (availableVoices) => {
-      return availableVoices.find((voice) => voice.lang.includes("bn"));
-    };
-console.log(window.speechSynthesis.getVoices());
-
-    const speechSynthesisSupported = "speechSynthesis" in window;
-    if (speechSynthesisSupported) {
-      window.speechSynthesis.onvoiceschanged = fetchVoices;
-      fetchVoices();
+  const handleListen = () => {
+    if (SpeechRecognition.browserSupportsSpeechRecognition()) {
+      SpeechRecognition.startListening({
+        continuous: true,
+        language: "bn-BD", // Set the language to Bengali (Bangladesh)
+      });
     } else {
-      console.error("Speech synthesis not supported.");
-    }
-  }, [text]);
-
-  const speak = () => {
-    if (selectedVoice) {
-      let utterance = new SpeechSynthesisUtterance();
-      utterance.text = text;
-      utterance.voice = selectedVoice;
-      window.speechSynthesis.speak(utterance);
-    } else {
-      console.error("Bengali voice not found.");
+      console.error("Speech recognition not supported in this browser.");
     }
   };
 
   return (
     <div>
-      {selectedVoice && (
-        <div>
-          <p>
-            Selected Voice: {selectedVoice.name} ({selectedVoice.lang})
-          </p>
-          <button onClick={speak}>Speak</button>
-        </div>
-      )}
-      {!selectedVoice && (
-        <p>
-          Bengali voice not found. Please make sure Bengali voice is available
-          on your system.
-        </p>
-      )}
+      <button onClick={handleListen}>Start Listening</button>
+      <button onClick={SpeechRecognition.stopListening}>Stop Listening</button>
+      <button onClick={resetTranscript}>Reset</button>
+      <p>{transcript}</p>
     </div>
   );
 };
 
-export default TextToSpeech;
+export default SpeechToText;
