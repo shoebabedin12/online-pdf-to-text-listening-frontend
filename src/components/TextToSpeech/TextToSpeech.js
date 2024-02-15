@@ -20,6 +20,10 @@ const SpeechToText = ({text}) => {
     setSelectedLanguage(event.target.value);
   };
 
+  const stopListening = () => {
+    SpeechRecognition.stopListening();
+  };
+
   const speakTranscript = () => {
     const utterance = new SpeechSynthesisUtterance(transcript);
     utterance.lang = selectedLanguage;
@@ -29,6 +33,7 @@ const SpeechToText = ({text}) => {
   return (
     <div>
       <button onClick={handleListen}>Start Listening</button>
+      <button onClick={stopListening}>Stop Listening</button>
       <button onClick={resetTranscript}>Reset</button>
       <button onClick={speakTranscript}>Speak Transcript</button>
       <select value={selectedLanguage} onChange={handleLanguageChange}>
