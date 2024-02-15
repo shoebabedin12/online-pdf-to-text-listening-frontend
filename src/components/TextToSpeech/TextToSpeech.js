@@ -20,10 +20,17 @@ const SpeechToText = () => {
     setSelectedLanguage(event.target.value);
   };
 
+  const speakTranscript = () => {
+    const utterance = new SpeechSynthesisUtterance(transcript);
+    utterance.lang = selectedLanguage;
+    window.speechSynthesis.speak(utterance);
+  };
+
   return (
     <div>
       <button onClick={handleListen}>Start Listening</button>
       <button onClick={resetTranscript}>Reset</button>
+      <button onClick={speakTranscript}>Speak Transcript</button>
       <select value={selectedLanguage} onChange={handleLanguageChange}>
         <option value="en-US">English (United States)</option>
         <option value="bn-BD">Bengali (Bangladesh)</option>
