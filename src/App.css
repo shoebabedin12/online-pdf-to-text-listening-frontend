@@ -1,0 +1,48 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+}
+.demo-logo {
+  /* margin: 16px; */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  text-align: center;
+  line-height: 32px;
+  padding: 2px 20px;
+}
+
+.colored-avatar {
+  font-size: 24px;
+  font-weight: bold;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-image {
+  font-size: 100px;
+  font-weight: bold;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
