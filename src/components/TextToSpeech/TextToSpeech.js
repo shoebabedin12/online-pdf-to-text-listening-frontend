@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
 const SpeechToText = ({text}) => {
+    console.log(text);
   const { transcript, resetTranscript } = useSpeechRecognition();
   const [selectedLanguage, setSelectedLanguage] = useState("en-US");
 
@@ -25,7 +26,7 @@ const SpeechToText = ({text}) => {
   };
 
   const speakTranscript = () => {
-    const utterance = new SpeechSynthesisUtterance(transcript);
+    const utterance = new SpeechSynthesisUtterance(transcript) || new SpeechSynthesisUtterance(text);
     utterance.lang = selectedLanguage;
     window.speechSynthesis.speak(utterance);
   };
