@@ -54,13 +54,7 @@ const CustomLayout = () => {
 
   return (
     <>
-      <Layout style={{
-              // background: colorBgContainer,
-              // minHeight: 280,
-              // padding: 24,
-              // borderRadius: borderRadiusLG,
-              minHeight: '100vh',
-            }}>
+      <Layout>
         <CustomHeader />
         <Content
           style={{
@@ -73,7 +67,7 @@ const CustomLayout = () => {
               minHeight: 280,
               padding: 24,
               borderRadius: borderRadiusLG,
-              // minHeight: '100vh',
+              minHeight: '100vh',
             }}
           >
             <Outlet />

@@ -39,7 +39,33 @@ const Login = () => {
             type: "success",
             content: response.data.message
           });
-          navigate("/");
+          const fetchData = async () => {
+            const token = localStorage.getItem("user");
+            if (!token) {
+              console.error("Token not found in local storage");
+              return;
+            }
+        
+            const tokenWithoutQuotes = token.replace(/"/g, "");
+        
+            try {
+              const response = await axios.get(`${api}/user/single-user`, {
+                headers: {
+                  Authorization: `Bearer ${tokenWithoutQuotes}`
+                }
+              });
+        
+              console.log(response);
+              localStorage.setItem("userdata", JSON.stringify(response?.data.data));
+              message.success(response.data.message);
+              navigate('/')
+            } catch (error) {
+              console.error("Error fetching user data:", error);
+            }
+          };
+
+          fetchData();
+        
         }
       })
       .catch((error) => {
@@ -50,6 +76,7 @@ const Login = () => {
         console.log(error);
       });
   };
+  
 
   return (
     <>

@@ -2,7 +2,7 @@ import { DownOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Menu, Space } from "antd";
 import { Header } from "antd/es/layout/layout";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ColorfulText from "../ColorfulText/ColorfulText";
 
 const profileNav = [
@@ -50,7 +50,10 @@ const dropdownMenu = (
 );
 
 const CustomHeader = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState("");
+
+  
   useEffect(() => {
     const storedUserData = localStorage.getItem("userdata");
 
@@ -59,6 +62,8 @@ const CustomHeader = () => {
       setUser(userData);
     }
   }, []);
+
+
   const items = [
     { key: 0, label: "Home" },
     { key: 1, label: "About" }

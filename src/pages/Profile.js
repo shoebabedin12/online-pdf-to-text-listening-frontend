@@ -166,7 +166,7 @@ const Profile = () => {
   //     console.error("Error fetching PDF and converting to text:", error);
   //   }
   // };
-
+console.log(data);
   return (
     <>
       {contextHolder}
