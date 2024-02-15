@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
-const SpeechToText = () => {
+const SpeechToText = ({text}) => {
   const { transcript, resetTranscript } = useSpeechRecognition();
   const [selectedLanguage, setSelectedLanguage] = useState("en-US");
 
