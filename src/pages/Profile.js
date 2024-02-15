@@ -20,7 +20,7 @@ import TextToSpeech from "../components/TextToSpeech/TextToSpeech";
 
 const Profile = () => {
   const api = process.env.REACT_APP_API_KEY;
-  const live = process.env.REACT_APP_LOCAL;
+  const live = process.env.REACT_APP_LIVE;
   const [form] = Form.useForm();
   const { Title } = Typography;
   const [user, setUser] = useState("");
