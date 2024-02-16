@@ -26,7 +26,7 @@ const SpeechToText = ({text}) => {
   };
 
   const speakTranscript = () => {
-    const utterance = new SpeechSynthesisUtterance(text);
+    const utterance = new SpeechSynthesisUtterance(transcript) || new SpeechSynthesisUtterance(text;
     console.log(utterance);
     utterance.lang = selectedLanguage;
     window.speechSynthesis.speak(utterance);
